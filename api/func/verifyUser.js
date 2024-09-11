@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, _, next) => {
   const token = req.cookies.asblog_token;
+  console.log("token::-> ", token);
+  console.log("asblog_token::-> ", req.cookies.asblog_token);
 
   if (!token) {
     return next({

@@ -8,13 +8,14 @@ import notFound from "../middleware/notFound.js";
 import err from "../middleware/err.js";
 import postRoute from "./router/post.route.js";
 import commentRoute from "./router/comment.router.js";
+import "dotenv/config";
 
 // Initialize the app
 const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend URL
+  origin: process.env.CORS_URL, // Replace with your frontend URL
   credentials: true, // Allow cookies
 };
 app.use(cors(corsOptions)); // Enable Cross-Origin Resource Sharing

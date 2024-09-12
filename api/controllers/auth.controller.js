@@ -53,12 +53,15 @@ export const signin = async (req, res, next) => {
       return next({ status: 400, message: "Invalid Password!" });
     }
     user.password = "****";
-    const token = jwt.sign({ user }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign({ user }, process.env.JWT_SECRET);
 
     return res
       .status(200)
+      .cookie("asblog_token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+      })
       .json({ asblog_token: token, message: "Signed in successfully!" });
   } catch (error) {
     return next({
@@ -95,6 +98,11 @@ export const google = async (req, res, next) => {
 
     return res
       .status(200)
+      .cookie("asblog_token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+      })
       .json({ asblog_token: token, message: "Signed in successfully!" });
   } catch (error) {
     return next({

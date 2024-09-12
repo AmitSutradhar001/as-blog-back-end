@@ -4,9 +4,6 @@ export const verifyToken = (req, _, next) => {
   const token = req.cookies.asblog_token;
 
   console.log("token::-> ", token);
-  console.log("asblog_token::-> ", req.cookies.asblog_token);
-  console.log("all cookies::->", req.cookies);
-  console.log("req::-> ", req);
 
   if (!token) {
     return next({
